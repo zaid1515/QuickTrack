@@ -1,0 +1,194 @@
+[
+     {
+          "name": "Wireless Mouse",
+          "quantity": 150,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Bluetooth Headphones",
+          "quantity": 120,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Smartphone Case",
+          "quantity": 200,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Laptop Stand",
+          "quantity": 80,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "LED Desk Lamp",
+          "quantity": 60,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Portable Charger",
+          "quantity": 300,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Wireless Keyboard",
+          "quantity": 110,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Smartwatch",
+          "quantity": 250,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Bluetooth Speaker",
+          "quantity": 135,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Action Camera",
+          "quantity": 45,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Electric Toothbrush",
+          "quantity": 170,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Smart Home Hub",
+          "quantity": 30,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Gaming Headset",
+          "quantity": 90,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Fitness Tracker",
+          "quantity": 220,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Virtual Reality Headset",
+          "quantity": 40,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Wireless Earbuds",
+          "quantity": 250,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Smartphone Charger",
+          "quantity": 500,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Tablet Stand",
+          "quantity": 75,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Home Security Camera",
+          "quantity": 55,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Smart Lock",
+          "quantity": 130,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Car Dashcam",
+          "quantity": 60,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Smart Refrigerator",
+          "quantity": 25,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Electric Kettle",
+          "quantity": 180,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Induction Cooktop",
+          "quantity": 70,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Cordless Vacuum Cleaner",
+          "quantity": 100,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Hair Dryer",
+          "quantity": 200,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Electric Blender",
+          "quantity": 150,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Coffee Maker",
+          "quantity": 80,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Waffle Maker",
+          "quantity": 50,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Food Processor",
+          "quantity": 95,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Electric Griddle",
+          "quantity": 40,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     },
+     {
+          "name": "Electric Rice Cooker",
+          "quantity": 100,
+          "createdAt": "2025-04-30T12:00:00Z",
+          "updatedAt": "2025-04-30T12:00:00Z"
+     }
+]
