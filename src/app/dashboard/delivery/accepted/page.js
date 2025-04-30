@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import { SocketContext } from "../../../../app/context/socket";
 
 export default function AcceptedOrders() {
+  const socket = useContext(SocketContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const fetchOrders = async () => {
     try {
-      const socket = useContext(SocketContext);
       const token = localStorage.getItem("token");
       if (!token) {
         alert("Token Expired");
