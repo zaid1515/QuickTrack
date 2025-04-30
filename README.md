@@ -122,6 +122,24 @@ src/
 - Customer receives real-time updates on their orders.
 
 ---
+## Screenshots
+
+**Register Page**
+![Register Page](./screenshots/register.png) 
+
+**Login Page** 
+![Login Page](./screenshots/login.png) 
+
+**Orders Listing Page** 
+![Blogs Page](./screenshots/orders-list.png) 
+
+**Create Order (Customer)** 
+![Create Post](./screenshots/place-order.png) 
+
+**Update Order (Delivery Partner)** 
+![Create Post](./screenshots/update-order.png) 
+
+---
 
 ## App Flow Summary
 
