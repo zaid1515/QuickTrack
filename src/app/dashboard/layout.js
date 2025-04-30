@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }) {
 
     const token = localStorage.getItem("token");
     if (token) {
-      const s = io("http://localhost:4000", {
+      const s = io("http://54.234.90.90:4000", {
         auth: { token },
       });
       s.on("connect_error", (err) => console.error("Socket auth error:", err));
