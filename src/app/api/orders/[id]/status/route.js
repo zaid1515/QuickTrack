@@ -1,6 +1,6 @@
-import { connectDB } from "@/lib/db";
-import { authGuard } from "@/lib/middleware/authGuard";
-import Order from "@/models/order.model";
+import { connectDB } from "../../../../../lib/db";
+import { authGuard } from "../../../../../lib/middleware/authGuard";
+import Order from "../../../../../models/order.model";
 import { NextResponse } from "next/server";
 
 export const PATCH = authGuard(async (req, contextPromise) => {

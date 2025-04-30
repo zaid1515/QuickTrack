@@ -1,6 +1,6 @@
-import { connectDB } from "@/lib/db";
-import User from "@/models/user.model";
-import { authGuard } from "@/lib/middleware/authGuard";
+import { connectDB } from "../../../../lib/db";
+import { authGuard } from "../../../../lib/middleware/authGuard";
+import User from "../../../../models/user.model";
 
 export const GET = authGuard(async (req) => {
   try {

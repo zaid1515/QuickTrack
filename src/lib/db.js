@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-import "@/models/user.model";
-import "@/models/product.model";
-import "@/models/order.model";
+import "../models/user.model";
+import "../models/product.model";
+import "../models/order.model";
 
 export async function connectDB() {
   try {

@@ -1,6 +1,6 @@
-import { signJWT } from "@/lib/auth";
-import { connectDB } from "@/lib/db";
-import User from "@/models/user.model";
+import { signJWT } from   "../../../../lib/auth";
+import { connectDB } from "../../../../lib/db";
+import User from "../../../../models/user.model";
 import bcrypt from "bcryptjs";
 
 export async function POST(req) {

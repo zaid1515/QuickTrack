@@ -1,5 +1,5 @@
-import { authGuard } from "@/lib/middleware/authGuard";
-import Product from "@/models/product.model";
+import { authGuard } from "../../../lib/middleware/authGuard";
+import Product from "../../../models/product.model";
 
 export const GET=authGuard(async(req)=>{
      try {
