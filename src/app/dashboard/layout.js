@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState,createContext } from "react";
 import { io } from "socket.io-client";;
-
-export const SocketContext = createContext(null);
+import {SocketContext} from '../context/socket'
+// export const SocketContext = createContext(null);
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
