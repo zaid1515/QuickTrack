@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { SocketContext } from "../layout";
+import { SocketContext } from "../../../app/context/socket";
 
 export default function AcceptedOrders() {
   const [orders, setOrders] = useState([]);
