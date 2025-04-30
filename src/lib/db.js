@@ -10,6 +10,7 @@ export async function connectDB() {
       serverSelectionTimeoutMS: 30000,  
       connectTimeoutMS: 30000, 
     });
+    console.log("Connected to the database")
     return connection;
   } catch (error) {
     console.error(error.message);
