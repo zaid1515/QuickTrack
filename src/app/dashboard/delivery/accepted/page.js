@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SocketContext } from "@/app/context/socket";
 
 export default function AcceptedOrders() {
   const [orders, setOrders] = useState([]);
@@ -9,6 +10,7 @@ export default function AcceptedOrders() {
 
   const fetchOrders = async () => {
     try {
+      const socket = useContext(SocketContext);
       const token = localStorage.getItem("token");
       if (!token) {
         alert("Token Expired");
@@ -50,6 +52,12 @@ export default function AcceptedOrders() {
   const handleStatusUpdate = async (order) => {
     const nextStatus = getNextStatus(order.status);
     if (!nextStatus) return;
+
+    if (!socket) console.error("socket connection not found");
+    socket.emit("order:update", {
+      orderId: order._id,
+      status: nextStatus,
+    });
 
     try {
       const token = localStorage.getItem("token");
