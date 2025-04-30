@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function PastOrders() {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const fetchOrders = async () => {
@@ -21,11 +22,13 @@ export default function PastOrders() {
         },
       });
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       setOrders(data.data || []);
     } catch (error) {
       console.error("Failed to fetch Orders:", error.message);
       alert("Something went wrong while fetching orders.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,10 +38,14 @@ export default function PastOrders() {
 
   return (
     <div className="space-y-6">
-      {orders.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center items-center h-60">
+          <div className="w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : orders.length === 0 ? (
         <p className="text-gray-500">No orders found.</p>
       ) : (
-        orders.map((order,key) => (
+        orders.map((order, key) => (
           <div
             key={key}
             className="border rounded-lg overflow-hidden shadow-sm"
@@ -69,7 +76,8 @@ export default function PastOrders() {
               <div className="flex items-center">
                 <p>
                   <strong>Customer:</strong> {order.customer.name} &nbsp;
-                  <strong>Delivery:</strong> {order.delivery?.name || "Not Accepted"}
+                  <strong>Delivery:</strong>{" "}
+                  {order.delivery?.name || "Not Accepted"}
                 </p>
               </div>
             </div>

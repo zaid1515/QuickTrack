@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function AcceptedOrders() {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const fetchOrders = async () => {
@@ -25,6 +26,8 @@ export default function AcceptedOrders() {
     } catch (error) {
       console.error("Failed to fetch Orders:", error.message);
       alert("Something went wrong while fetching orders.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,7 +55,6 @@ export default function AcceptedOrders() {
       const token = localStorage.getItem("token");
       const response = await fetch(`/api/orders/${order._id}/status`, {
         method: "PATCH",
-        body: JSON.stringify({ status: order.status }),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -74,7 +76,11 @@ export default function AcceptedOrders() {
 
   return (
     <div className="space-y-6">
-      {orders.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center items-center h-60">
+          <div className="w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : orders.length === 0 ? (
         <p className="text-gray-500">No orders found.</p>
       ) : (
         orders.map((order, key) => {

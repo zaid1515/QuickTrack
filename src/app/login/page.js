@@ -10,9 +10,11 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("customer");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
@@ -38,6 +40,8 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -97,9 +101,14 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full py-2 font-semibold text-white bg-gray-900 rounded-md hover:bg-gray-800"
+            disabled={loading}
+            className="w-full py-2 font-semibold text-white bg-gray-900 rounded-md flex justify-center items-center"
           >
-            Sign In
+            {loading ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
 

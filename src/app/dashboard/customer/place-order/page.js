@@ -11,9 +11,11 @@ export default function PlaceOrder() {
     quantity: 0,
     location: "",
   });
+  const [loading, setLoading] = useState(false); 
 
   const fetchProducts = async () => {
     try {
+      setLoading(true); 
       const token = localStorage.getItem("token");
       if (!token) {
         alert("Token Expired");
@@ -32,6 +34,8 @@ export default function PlaceOrder() {
     } catch (error) {
       console.error("Failed to fetch products:", error.message);
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,6 +46,7 @@ export default function PlaceOrder() {
   const placeOrder = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const token = localStorage.getItem("token");
       if (!token) {
         alert("Token Expired");
@@ -57,7 +62,7 @@ export default function PlaceOrder() {
         },
       });
       if (response.ok) {
-        alert("Order placed successfully")
+        alert("Order placed successfully");
         router.push("/dashboard/customer");
       } else {
         alert("Failed to place the order");
@@ -65,6 +70,8 @@ export default function PlaceOrder() {
     } catch (error) {
       console.error(error.message);
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,62 +100,68 @@ export default function PlaceOrder() {
           Fill in the details to continue
         </p>
 
-        <form onSubmit={placeOrder} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Product
-            </label>
-            <select
-              name="productId"
-              value={formData.productId}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-indigo-300 bg-white text-gray-900"
+        {loading ? (
+          <div className="flex justify-center items-center h-60">
+            <div className="w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full animate-spin" />
+          </div>
+        ) : (
+          <form onSubmit={placeOrder} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Product
+              </label>
+              <select
+                name="productId"
+                value={formData.productId}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-indigo-300 bg-white text-gray-900"
+              >
+                <option value="">Select a product</option>
+                {products.map((product) => (
+                  <option key={product._id} value={product._id}>
+                    {product.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Quantity
+              </label>
+              <input
+                type="number"
+                name="quantity"
+                value={formData.quantity}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-indigo-300"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Location
+              </label>
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-indigo-300"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2 font-semibold text-white bg-gray-900 rounded-md hover:bg-gray-800"
             >
-              <option value="">Select a product</option>
-              {products.map((product) => (
-                <option key={product._id} value={product._id}>
-                  {product.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Quantity
-            </label>
-            <input
-              type="number"
-              name="quantity"
-              value={formData.quantity}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-indigo-300"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Location
-            </label>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-indigo-300"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-2 font-semibold text-white bg-gray-900 rounded-md hover:bg-gray-800"
-          >
-            Place Order
-          </button>
-        </form>
+              Place Order
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

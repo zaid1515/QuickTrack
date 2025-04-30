@@ -5,8 +5,9 @@ import { SocketContext } from "../../context/socket";
 
 export default function OrderList() {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const socket=useContext(SocketContext)
+  const socket = useContext(SocketContext);
 
   const fetchOrders = async () => {
     try {
@@ -23,11 +24,12 @@ export default function OrderList() {
         },
       });
       const data = await response.json();
-      
       setOrders(data.data || []);
     } catch (error) {
       console.error("Failed to fetch Orders:", error.message);
       alert("Something went wrong while fetching orders.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,33 +38,36 @@ export default function OrderList() {
   }, []);
 
   useEffect(() => {
-     if (!socket) return;
- 
-     // Listen for status updates for *this* customer
-     socket.on("order:status", ({ orderId, status }) => {
-       setOrders((prev) =>
-         prev.map((o) =>
-           o._id === orderId
-             ? {
-                 ...o,
-                 status,
-               }
-             : o
-         )
-       );
-     });
- 
-     return () => {
-       socket.off("order:status");
-     };
-   }, [socket]);
+    if (!socket) return;
+
+    socket.on("order:status", ({ orderId, status }) => {
+      setOrders((prev) =>
+        prev.map((o) =>
+          o._id === orderId
+            ? {
+                ...o,
+                status,
+              }
+            : o
+        )
+      );
+    });
+
+    return () => {
+      socket.off("order:status");
+    };
+  }, [socket]);
 
   return (
     <div className="space-y-6">
-      {orders.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center items-center h-60">
+          <div className="w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : orders.length === 0 ? (
         <p className="text-gray-500">No orders found.</p>
       ) : (
-        orders.map((order,key) => (
+        orders.map((order, key) => (
           <div
             key={key}
             className="border rounded-lg overflow-hidden shadow-sm"
@@ -93,7 +98,8 @@ export default function OrderList() {
               <div className="flex items-center">
                 <p>
                   <strong>Customer:</strong> {order.customer.name} &nbsp;
-                  <strong>Delivery:</strong> {order.delivery?.name || "Not Accepted"}
+                  <strong>Delivery:</strong>{" "}
+                  {order.delivery?.name || "Not Accepted"}
                 </p>
               </div>
             </div>

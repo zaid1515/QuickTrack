@@ -12,8 +12,11 @@ export default function Register() {
     role: "customer",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
@@ -31,6 +34,8 @@ export default function Register() {
       }
     } catch (err) {
       console.error("Error:", err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -115,9 +120,14 @@ export default function Register() {
 
           <button
             type="submit"
-            className="w-full py-2 font-semibold text-white bg-gray-900 rounded-md"
+            disabled={loading}
+            className="w-full py-2 font-semibold text-white bg-gray-900 rounded-md flex items-center justify-center"
           >
-            Register
+            {loading ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              "Register"
+            )}
           </button>
         </form>
         <p className="text-sm text-center text-gray-600">

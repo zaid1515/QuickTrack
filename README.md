@@ -1,36 +1,154 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Quick Commerce Order & Delivery Tracking System
 
-## Getting Started
+A full-stack application for placing, managing, and tracking real-time delivery orders. Built with **Next.js**, **MongoDB**, **JWT authentication**, and **Socket.io** for live updates.
 
-First, run the development server:
+---
+
+## Tech Stack
+
+- **Frontend:** React.js, Next.js (App Router)
+- **Backend:** Next.js API Routes
+- **Authentication:** JWT
+- **Database:** MongoDB + Mongoose
+- **Real-Time:** Socket.io
+- **Deployment:** Vercel and Render
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-repo-url>
+cd your-project-name
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Variables
+
+Create a `.env.local` file at the root:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+### 4. Run the App
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be live on `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Folder Structure Overview
 
-## Learn More
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── auth/              # Register, login, fetch user
+│   │   ├── orders/            # Order creation, status updates, fetching
+│   │   ├── product/           # Fetch all products
+│   ├── login/                 # Login page
+│   ├── register/              # Register page
+│   ├── dashboard/
+│   │   ├── layout.js          # Navbar + role-based layout
+│   │   ├── customer/
+│   │   │   ├── page.js        # Current orders list
+│   │   │   ├── place-order/   # Place order form
+│   │   │   └── history/       # Past orders
+│   │   ├── delivery/
+│   │   │   ├── page.js        # Pending orders
+│   │   │   ├── accepted/      # Accepted orders
+│   │   │   └── history/       # Past orders
+├── lib/
+│   ├── auth.js                # JWT sign and verify
+│   ├── db.js                  # MongoDB connection
+│   └── middleware/
+│       └── authGuard.js       # JWT middleware for API protection
+├── models/
+│   ├── user.js
+│   ├── product.js
+│   └── order.js
+├── socket/                    # Socket server & client handlers
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authentication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Register:** `POST /api/auth/register`
+- **Login:** `POST /api/auth/login`
+- **Get Current User:** `GET /api/auth/me` (JWT in headers)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Order APIs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Create Order (Customer)**  
+  `POST /api/orders`
+
+- **Customer Orders List**  
+  `GET /api/orders/customer`
+
+- **Order Status Update (Delivery)**  
+  `PUT /api/orders/[id]/status`
+
+- **Fetch Accepted Orders (Delivery)**  
+  `GET /api/orders/accepted`
+
+- **Pending Orders (All)**  
+  `GET /api/orders/pending`
+
+- **Past Orders (Customer/Delivery)**  
+  `GET /api/orders/history`
+
+---
+
+## WebSockets
+
+- Socket server initialized in `socket/`.
+- Delivery partner emits order status updates.
+- Server broadcasts status to all clients.
+- Customer receives real-time updates on their orders.
+
+---
+
+## App Flow Summary
+
+### **Login & Registration**
+
+- JWT-based authentication.
+- Roles: `customer`, `delivery`.
+
+### **Customer Flow**
+
+1. Register/Login.
+2. Place an order from the **Place Order** page.
+3. View current order status in real-time.
+4. View past orders on **History** page.
+
+### **Delivery Partner Flow**
+
+1. Register/Login.
+2. View all **Pending Orders**.
+3. Accept orders and update status: `Accepted → Out for Delivery → Delivered`.
+4. View **Accepted** and **Past Orders**.
+
+---
+
+## Deployment 
+
+- Next.js Full Stack deployed on vercel.
+- Socket deployed on render.
+
+---
